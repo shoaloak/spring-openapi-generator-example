@@ -59,7 +59,7 @@
 <!--							<goal>generate</goal>-->
 <!--						</goals>-->
 <!--						<configuration>-->
-<!--							<inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>-->
+<!--							<inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>-->
 <!--							<generatorName>spring</generatorName>-->
 <!--							<configHelp>true</configHelp>-->
 <!--						</configuration>-->
@@ -69,7 +69,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<library>spring-boot</library>
 
