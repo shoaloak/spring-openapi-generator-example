@@ -1,28 +1,33 @@
 openapi: 3.0.3
 info:
-  title: Sample API
+  title: Sample API for Generation Demo
   version: 1.0.0
 servers:
   - url: http://localhost:9999/gendemo/api
-#tags:
-#  - name: user
-#    description: Endpoints related to users.
+tags:
+  - name: user
+    description: Endpoints related to users.
 paths:
   /users:
     get:
-#      tags:
-#        - user
-      summary: Retrieve all users
+      tags:
+        - user
       operationId: getUsers
+      summary: Retrieve all users
       responses:
         '200':
-          description: Successful operation
+          description: Users found and returned
+          content:
+            application/json:
+              schema:
+                type: string
+#                $ref: '#/components/schemas/User'
   /users/{id}:
     get:
-#      tags:
-#        - user
-      summary: Retrieve a user by ID
+      tags:
+        - user
       operationId: getUserById
+      summary: Retrieve a user by ID
       parameters:
         - name: id
           in: path
@@ -33,5 +38,45 @@ paths:
       responses:
         '200':
           description: Successful operation
+          content:
+              application/json:
+                schema:
+                  # This doesn't work, unless we implement GetUserById200ResponseDto I suppose?
+                  # Failure of OpenAPI generator. We switch over to manual coding.
+                  oneOf:
+                    - $ref: '#/components/schemas/User'
+                    - type: string
+#                  oneOf:
+#                    - $ref: '#/components/schemas/User'
+#                    - $ref: '#/components/schemas/Raw'
+              text/plain:
+                schema:
+                  type: string
+                  example: User not found
         '404':
           description: User not found
+components:
+  schemas:
+    User:
+      title: User
+      description: A user.
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          format: int32
+          minimum: 0
+          readOnly: true
+        firstName:
+          title: First name
+          description: The first name of the User.
+          type: string
+          minLength: 1
+          maxLength: 255
+          example: John
+    Raw:
+      title: Raw data
+      properties:
+        value:
+          type: string

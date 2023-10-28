@@ -73,13 +73,22 @@
 							<generatorName>spring</generatorName>
 							<library>spring-boot</library>
 
-							<apiPackage>${project.groupId}.${project.artifactId}.rest.api</apiPackage>
+							<generateApis>true</generateApis>
+							<generateModels>true</generateModels>
+							<modelNameSuffix>Dto</modelNameSuffix>
+
+							<generateApiTests>false</generateApiTests>
+							<generateModelTests>false</generateModelTests>
 							<configOptions>
+								<basePackage>${project.groupId}.${project.artifactId}.rest</basePackage>
+								<apiPackage>${project.groupId}.${project.artifactId}.rest.api</apiPackage>
+								<modelPackage>${project.groupId}.${project.artifactId}.rest.dto</modelPackage>
+
+								<interfaceOnly>true</interfaceOnly>
 								<!-- OpenAPI Jackson Nullable library -->
 								<openApiNullable>false</openApiNullable>
-								<!-- javax 2 jakarta -->
+								<!-- Use jakarta instead of javax -->
 								<useSpringBoot3>true</useSpringBoot3>
-								<interfaceOnly>true</interfaceOnly>
 							</configOptions>
 						</configuration>
 					</execution>
